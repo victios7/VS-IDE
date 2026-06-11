@@ -1,15 +1,209 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>VS& - Plataforma de desarrollo</title>
-  <meta name="description" content="Descarga VS& y las apps de VS# para Windows.">
-</head>
-  <body>
-    <h1>VS& / VS#</h1>
-    <p>Bienvenido a la página oficial de VS& y las herramientas VS#.</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS# IDE v4.5 — La Selva del Código</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --jg1:#0a1a0a;--jg2:#0d2b0d;--jg3:#112d11;--jg4:#163516;
+            --jl1:#2d6a2d;--jl2:#3a8a3a;--jl3:#4caf50;--jl4:#7ec87e;
+            --jac:#aaff44;--jac2:#c8ff88;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: var(--jg1);
+            color: #d4ffb4;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    <h2>Descargas</h2>
-    <a href="vsand-setup.exe">Descargar VS&</a>
-  </body>
+        /* Jungle background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 60% 40% at 20% 80%, rgba(13,43,13,0.9) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 80% 20%, rgba(22,53,22,0.8) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 50% at 50% 100%, rgba(45,106,45,0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        body::after {
+            content: '🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿🌿';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            font-size: 32px;
+            letter-spacing: 8px;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: -1;
+            line-height: 1;
+            text-shadow: 0 0 20px #4caf50;
+        }
+
+        header {
+            padding: 30px 40px;
+            background: linear-gradient(180deg, rgba(10,26,10,0.98), rgba(10,26,10,0.7));
+            border-bottom: 3px solid rgba(76,175,80,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: 'Bangers', cursive;
+            font-size: 52px;
+            letter-spacing: 6px;
+            color: var(--jac);
+            text-shadow: 0 0 25px rgba(170,255,68,0.6), 4px 4px 0 #1a3a1a;
+        }
+        .logo span { color: #fff; opacity: 0.8; }
+
+        .tagline {
+            font-family: 'Bangers', cursive;
+            font-size: 18px;
+            color: var(--jl4);
+            letter-spacing: 3px;
+        }
+
+        .hero {
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4.5rem;
+            color: var(--jac2);
+            text-shadow: 0 0 30px rgba(170,255,68,0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #c8ff88;
+        }
+
+        .download-btn {
+            display: inline-block;
+            font-family: 'Bangers', cursive;
+            font-size: 24px;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--jl2), var(--jl3));
+            color: #0a1a0a;
+            border: 5px solid var(--jac);
+            border-radius: 16px;
+            text-decoration: none;
+            box-shadow: 0 8px 0 #1a3a00, 0 0 40px rgba(170,255,68,0.4);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 14px 0 #1a3a00, 0 0 50px rgba(170,255,68,0.6);
+        }
+
+        .features {
+            padding: 60px 40px;
+            background: rgba(13,43,13,0.6);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(17,45,17,0.95), rgba(13,43,13,0.9));
+            border: 2px solid rgba(76,175,80,0.3);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--jac);
+            transform: translateY(-10px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #081208;
+            border-top: 2px solid rgba(76,175,80,0.3);
+            color: #4a7a4a;
+        }
+
+        .terminal {
+            background: #0a1a0a;
+            border: 2px solid var(--jl1);
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            color: #7ec87e;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">VS<span>#</span> 🌿</div>
+        <div>
+            <div class="tagline">ENTORNO DE DESARROLLO INTEGRADO v4.5</div>
+            <div style="font-size:13px;color:#4a7a4a;">La selva del código</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>VS# IDE</h1>
+        <p>El editor de código más salvaje de la jungla. Programación sencilla y potente</p>
+        
+        <a href="VS%23%20IDE%204.5.0.exe" class="download-btn" download>
+            ⬇ DESCARGAR VS# IDE v4.5.0 (Windows)
+        </a>
+
+        <div class="terminal">
+            vs#<br><br>
+            mostrar color "verde" "¡Bienvenido a la selva del código!"<br>
+            <span style="color:#aaff44;">hola mundo🌿</span>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <h2 style="color:var(--jac);font-family:'Bangers',cursive;">🌿 Lenguaje Natural</h2>
+                <p>Programas con sintaxis fácil: <code>mostrar "Hola selva"</code>, bucles, funciones y mucho más.</p>
+            </div>
+            <div class="feature-card">
+                <h2 style="color:var(--jac);font-family:'Bangers',cursive;">⬛ VOID ENGINE 3D</h2>
+                <p>Crea juegos y escenas 3D directamente desde tu código con Babylon.js integrado.</p>
+            </div>
+            <div class="feature-card">
+                <h2 style="color:var(--jac);font-family:'Bangers',cursive;">🌐 Exporta a HTML</h2>
+                <p>Convierte tus proyectos en páginas web ejecutables con un solo clic.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>VS# IDE v4.5 — Hecho con ❤️ en la jungla</p>
+        <p style="margin-top:10px;font-size:14px;"></p>
+    </footer>
+</body>
 </html>
